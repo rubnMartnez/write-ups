@@ -1,2 +1,2 @@
 # write-ups
-Write-ups from CTFs and pentests
+write-ups from CTFs and pentests
