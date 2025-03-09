@@ -28,6 +28,8 @@ Since it seems that it was a dead end, I googled how to enumerate smb further, a
 
 ![nmapScripts](./res/Legacy/nmapScripts.png)
 
+## Exploitation
+
 So I went to metasploit in order to exploit that vulnerability, but it failed
 
 ![msfEternalBlueFirstExploit](./res/Legacy/msfEternalBlueFirstExploit.png)
