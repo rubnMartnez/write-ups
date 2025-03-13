@@ -4,42 +4,46 @@ This is my write-up for the machine **Titanic** on Hack The Box located at: http
 
 ## Enumeration
 
-first we start with an nmap scan, it shows the following:
+First I started with an nmap scan, which shows the following:
 
-![nmapScan](./Imgs/Titanic/nmapScan.png)
+![nmapScan](./res/Titanic/nmapScan.png)
 
-- the port 80 is open, but exploring the web it seems that the host could not be resolved, so the ip should be added to the /etc/hosts with `echo "10.10.11.55 titanic.htb" | sudo tee -a /etc/hosts` and now firefox shows the page properly
+Port 80 is open, but when navigating to the web it seems that the host could not be resolved, so I added the IP to the /etc/hosts with `echo "10.10.11.55 titanic.htb" | sudo tee -a /etc/hosts` and now firefox shows the page properly
 
-- after some research for exploits for this apache version and for Werkzeug/3.0.3 it seems that the target is not vulnerable
+After some research for exploits for this apache version and for Werkzeug/3.0.3 it seems that the target is not vulnerable
 
-![msfApacheSearch](./Imgs/Titanic/msfApacheSearch.png)
+![msfApacheSearch](./res/Titanic/msfApacheSearch.png)
 
-- the wappalyzer show us some information, but nothing that we can exploit
+The wappalyzer show us some information, but nothing that we can exploit
 
-![wappalyzerReport](./Imgs/Titanic/wappalyzerReport.png)
+![wappalyzerReport](./res/Titanic/wappalyzerReport.png)
 
-- The gobuster shows that there's another directories to explore `gobuster dir -u http://titanic.htb/ -w /usr/share/wordlists/dirb/common.txt -x php,html,txt`
+Gobuster shows that there's another directories to explore
 
-![gobusterReport](./Imgs/Titanic/gobusterReport.png)
+![gobusterReport](./res/Titanic/gobusterReport.png)
 
-- After some tries playing with the directories and the POST and GET method, with the help of burpsuite, we could see that we have **LFI** on the downloads dir through the GET method
+After some tries playing with the directories and the POST and GET method, with the help of burpsuite, I got **LFI** on the downloads dir through the GET method
 
-![lfiDownloads](./Imgs/Titanic/lfiDownloads.png)
+![lfiDownloads](./res/Titanic/lfiDownloads.png)
 
-- With that the /etc/passwd and /etc/hosts were retrieved. For other files it gave error.
-- From the /etc/hosts we could see that there's a subdomain **dev.titanic.htb** where 
+With that I was able to pull the /etc/passwd and /etc/hosts. For other files it gave error, but from the /etc/hosts we could see that there's a subdomain **dev.titanic.htb**
 
-![titanicHosts](./Imgs/Titanic/titanicHosts.png)
+![titanicHosts](./res/Titanic/titanicHosts.png)
 
-- with gobuster we see some interesting dirs on that new subdomain
+Again with the help of gobuster we see some interesting dirs on that new subdomain
 
-![gobusterReportOfDev](./Imgs/Titanic/gobusterReportOfDev.png)
+![gobusterReportOfDev](./res/Titanic/gobusterReportOfDev.png)
 
-- Doing some digging into it, we could get some credentials of a mysql DB from the docker compose file. Probably where the flag is, but we can't connect directly, first we need to gain access to the ssh or something like that.
+Doing some digging into it, we could get some credentials of a mysql DB from the docker compose file. Probably where the flag is, but we can't connect directly, first we need to gain access to the ssh or something like that.
 
-![mysqlDockerCreds](./Imgs/Titanic/mysqlDockerCreds.png)
+![mysqlDockerCreds](./res/Titanic/mysqlDockerCreds.png)
 
-- Going to the explore dir we are able to check the source code, which is helpful, cause now we know that we can exploid the get method by sending a payload to get a reverse shell
+Going to the explore dir we are able to check the source code, which may be helpful finding an attack vector
 
-![sourceCode](./Imgs/Titanic/sourceCode.png)
+![sourceCode](./res/Titanic/sourceCode.png)
 
+TODOs
+- Further enumeration on versions
+- Check the source codes for attack vectors
+- Check if LFI is exploitable 
+- Check if it is possible to upload and execure a shell on dev subdomain

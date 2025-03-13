@@ -2,22 +2,22 @@
 
 This is my write-up for the machine **Blue** on Hack The Box located at: https://app.hackthebox.com/machines/51
 
-first we start with an nmap scan, it shows the following:
+First I started with an nmap scan, which shows the following:
 
-![nmapScan](./Imgs/Blue/nmapScan.png)
+![nmapScan](./res/Blue/nmapScan.png)
 
-Since the port for SMB is open, and we know that hack the box usually give us hint on the machine name, we could try to exploit eternal blue. A quick google search which the specific windows version lead us to this minitutorial on how to exploit it with metasploit
+Since the port for SMB is open, and we know that hack the box usually give us hint on the machine name, I've decided to give a try to the eternal blue exploit. A quick google search which the specific windows version lead us to this minitutorial on how to exploit it with metasploit
 
-![SMBmetasploitExploit](./Imgs/Blue/SMBmetasploitExploit.png)
+![SMBmetasploitExploit](./res/Blue/SMBmetasploitExploit.png)
 
 After setting up the options for the exploit we get a shell
 
-![exploitConfig](./Imgs/Blue/exploitRun.png)
+![exploitConfig](./res/Blue/exploitRun.png)
 
-we can find the user flag here:
+We can find the user flag here:
 
-![userFlag](./Imgs/Blue/userFlag.png)
+![userFlag](./res/Blue/userFlag.png)
 
-and the root flag here:
+And the root flag here:
 
-![rootFlag](./Imgs/Blue/rootFlag.png)
+![rootFlag](./res/Blue/rootFlag.png)
