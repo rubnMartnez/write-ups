@@ -1,0 +1,111 @@
+===============================================================
+Gobuster v3.6
+by OJ Reeves (@TheColonial) & Christian Mehlmauer (@firefart)
+===============================================================
+[+] Url:                     http://10.10.10.198:8080/
+[+] Method:                  GET
+[+] Threads:                 10
+[+] Wordlist:                /usr/share/wordlists/dirb/common.txt
+[+] Negative Status codes:   404
+[+] User Agent:              gobuster/3.6
+[+] Extensions:              php,html,txt
+[+] Timeout:                 10s
+===============================================================
+Starting gobuster in directory enumeration mode
+===============================================================
+[2K/.html                (Status: 403) [Size: 1044]
+[2K/.htaccess.html       (Status: 403) [Size: 1044]
+[2K/.hta                 (Status: 403) [Size: 1044]
+[2K/.hta.html            (Status: 403) [Size: 1044]
+[2K/.htaccess.php        (Status: 403) [Size: 1044]
+[2K/.htaccess            (Status: 403) [Size: 1044]
+[2K/.hta.php             (Status: 403) [Size: 1044]
+[2K/.hta.txt             (Status: 403) [Size: 1044]
+[2K/.htaccess.txt        (Status: 403) [Size: 1044]
+[2K/.htpasswd.txt        (Status: 403) [Size: 1044]
+[2K/.htpasswd.html       (Status: 403) [Size: 1044]
+[2K/.htpasswd.php        (Status: 403) [Size: 1044]
+[2K/.htpasswd            (Status: 403) [Size: 1044]
+[2K/about.php            (Status: 200) [Size: 5337]
+[2K/About.php            (Status: 200) [Size: 5337]
+[2K/admin.cgi            (Status: 403) [Size: 1044]
+[2K/admin.cgi.txt        (Status: 403) [Size: 1044]
+[2K/admin.cgi.html       (Status: 403) [Size: 1044]
+[2K/admin.pl             (Status: 403) [Size: 1044]
+[2K/admin.pl.html        (Status: 403) [Size: 1044]
+[2K/admin.pl.txt         (Status: 403) [Size: 1044]
+[2K/AT-admin.cgi         (Status: 403) [Size: 1044]
+[2K/AT-admin.cgi.txt     (Status: 403) [Size: 1044]
+[2K/AT-admin.cgi.html    (Status: 403) [Size: 1044]
+[2K/aux                  (Status: 403) [Size: 1044]
+[2K/aux.html             (Status: 403) [Size: 1044]
+[2K/aux.php              (Status: 403) [Size: 1044]
+[2K/aux.txt              (Status: 403) [Size: 1044]
+[2K/boot                 (Status: 301) [Size: 342] [--> http://10.10.10.198:8080/boot/]
+[2K/cachemgr.cgi         (Status: 403) [Size: 1044]
+[2K/cachemgr.cgi.html    (Status: 403) [Size: 1044]
+[2K/cachemgr.cgi.txt     (Status: 403) [Size: 1044]
+[2K/cgi-bin/             (Status: 403) [Size: 1058]
+[2K/cgi-bin/.html        (Status: 403) [Size: 1044]
+[2K/com1.txt             (Status: 403) [Size: 1044]
+[2K/com1                 (Status: 403) [Size: 1044]
+[2K/com1.php             (Status: 403) [Size: 1044]
+[2K/com3.html            (Status: 403) [Size: 1044]
+[2K/com3.txt             (Status: 403) [Size: 1044]
+[2K/com2.txt             (Status: 403) [Size: 1044]
+[2K/com3                 (Status: 403) [Size: 1044]
+[2K/com2                 (Status: 403) [Size: 1044]
+[2K/com2.html            (Status: 403) [Size: 1044]
+[2K/com3.php             (Status: 403) [Size: 1044]
+[2K/com2.php             (Status: 403) [Size: 1044]
+[2K/com1.html            (Status: 403) [Size: 1044]
+[2K/con                  (Status: 403) [Size: 1044]
+[2K/con.php              (Status: 403) [Size: 1044]
+[2K/con.txt              (Status: 403) [Size: 1044]
+[2K/con.html             (Status: 403) [Size: 1044]
+[2K/Contact.php          (Status: 200) [Size: 4169]
+[2K/contact.php          (Status: 200) [Size: 4169]
+[2K/edit.php             (Status: 200) [Size: 4282]
+[2K/ex                   (Status: 301) [Size: 340] [--> http://10.10.10.198:8080/ex/]
+[2K/examples             (Status: 503) [Size: 1058]
+[2K/feedback.php         (Status: 200) [Size: 4252]
+[2K/Home.php             (Status: 200) [Size: 143]
+[2K/home.php             (Status: 200) [Size: 143]
+[2K/img                  (Status: 301) [Size: 341] [--> http://10.10.10.198:8080/img/]
+[2K/include              (Status: 301) [Size: 345] [--> http://10.10.10.198:8080/include/]
+[2K/index.php            (Status: 200) [Size: 4969]
+[2K/Index.php            (Status: 200) [Size: 4969]
+[2K/index.php            (Status: 200) [Size: 4969]
+[2K/license              (Status: 200) [Size: 18025]
+[2K/LICENSE              (Status: 200) [Size: 18025]
+[2K/licenses             (Status: 403) [Size: 1203]
+[2K/lpt2                 (Status: 403) [Size: 1044]
+[2K/lpt2.html            (Status: 403) [Size: 1044]
+[2K/lpt1                 (Status: 403) [Size: 1044]
+[2K/lpt2.php             (Status: 403) [Size: 1044]
+[2K/lpt1.txt             (Status: 403) [Size: 1044]
+[2K/lpt1.php             (Status: 403) [Size: 1044]
+[2K/lpt1.html            (Status: 403) [Size: 1044]
+[2K/lpt2.txt             (Status: 403) [Size: 1044]
+[2K/nul                  (Status: 403) [Size: 1044]
+[2K/nul.txt              (Status: 403) [Size: 1044]
+[2K/nul.html             (Status: 403) [Size: 1044]
+[2K/nul.php              (Status: 403) [Size: 1044]
+[2K/packages.php         (Status: 200) [Size: 7791]
+[2K/phpmyadmin           (Status: 403) [Size: 1203]
+[2K/prn.txt              (Status: 403) [Size: 1044]
+[2K/prn                  (Status: 403) [Size: 1044]
+[2K/prn.html             (Status: 403) [Size: 1044]
+[2K/prn.php              (Status: 403) [Size: 1044]
+[2K/profile              (Status: 301) [Size: 345] [--> http://10.10.10.198:8080/profile/]
+[2K/register.php         (Status: 200) [Size: 137]
+[2K/server-info          (Status: 403) [Size: 1203]
+[2K/server-status        (Status: 403) [Size: 1203]
+[2K/up.php               (Status: 200) [Size: 209]
+[2K/upload               (Status: 301) [Size: 344] [--> http://10.10.10.198:8080/upload/]
+[2K/upload.php           (Status: 200) [Size: 107]
+[2K/webalizer            (Status: 403) [Size: 1044]
+
+===============================================================
+Finished
+===============================================================
