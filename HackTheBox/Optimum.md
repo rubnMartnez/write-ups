@@ -54,4 +54,35 @@ Before trying the exploits from the suggester, I tried incognito and kiwi module
 
 ![incognitoTry](./res/Optimum/incognitoTry.png)
 
-I've tried the local exploit suggester modules, but nothing was working
+I've tried some local exploit suggester modules, but none of them worked. So I went ahead and do some more enumeration by checking the privileges and searching for WSL
+
+![privsAndWSL](./res/Optimum/privsAndWSL.png)
+
+Also checked for stored creds, but nothing was there either
+
+![cmdkey](./res/Optimum/cmdkey.png)
+
+So I got back to the local exploit suggester modules, the first one that I tried said that the user wasn't on admin group
+
+![escalationFail](./res/Optimum/escalationFail.png)
+
+That made me enumerate the users further
+
+![users](./res/Optimum/users.png)
+
+And also ran winPEAS, where I saw that LSA, credetials guard, and so on were not enabled
+
+![winPEAS](./res/Optimum/winPEAS.png)
+
+Which gave me the idea to try the following module
+
+![exploitConfig](./res/Optimum/exploitConfig.png)
+
+And with that I finally got an elevated shell
+
+![gettingElevatedShell](./res/Optimum/gettingElevatedShell.png)
+
+Then the only thing left was to get the flags
+
+![userFlag](./res/Optimum/userFlag.png)
+![rootFlag](./res/Optimum/rootFlag.png)
