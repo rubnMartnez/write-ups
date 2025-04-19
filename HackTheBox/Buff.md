@@ -12,7 +12,7 @@ I decided to explore the website first to get a little bit of context and enumer
 
 ![defaultPage](./res/Buff/defaultPage.png)
 
-Then I run gobuster while I navigated through the website, and everything seemed normal, including the login request
+Then I ran gobuster while I navigated through the website, and everything seemed normal, including the login request
 
 ![loginRequest](./res/Buff/loginRequest.png)
 
@@ -20,7 +20,7 @@ The gobuster report does show some interesting directories
 
 ![gobusterReport](./res/Buff/gobusterReport.png)
 
-But before going that rabbithole I googled the port 7680 since I didn't know what it was, and it seems that it is associated with Microsoft Delivery Optimization which seems to be a P2P file distribution system. It seems that it's not a common attack surface, but I did some enumeration despite that but I didn't get anything interesting
+But before going that rabbithole I googled the port 7680 since I didn't know what it was, and it seems that it is associated with Microsoft Delivery Optimization which seems to be a P2P file distribution system. It seems that it's not a common attack surface, but I did some enumeration despite that, but I didn't get anything interesting
 
 ![port7680Enum](./res/Buff/port7680Enum.png)
 
@@ -38,7 +38,7 @@ Then I tried some exploits for apache and php but none of them were working, unt
 
 ![gettingAshell](./res/Buff/gettingAshell.png)
 
-So I did some basic enumeration with it
+So I tried to do some basic enumeration with it
 
 ![systeminfo](./res/Buff/systeminfo.png)
 
@@ -60,30 +60,58 @@ I tried uploading winPEAS, a meterpreter shell, etc... And nothing worked, so I 
 
 ![localUsers](./res/Buff/localUsers.png)
 
-The ipconfig and netstat info
+And some networking information, like ipconfig and netstat info
 
 ![ipconfig](./res/Buff/ipconfig.png)
 ![netstat](./res/Buff/netstat.png)
 
-A password file that I found lying there
+I also found password file that was lying there
 
 ![passwords](./res/Buff/passwords.png)
 
-The xampp readme file, which seems to contain some default creds and explanations about configs and how things are meant to work
+Along with a xampp readme file, which seems to contain some default creds and explanations about configs and how things are meant to work
 
 ![xamppReadmePart1](./res/Buff/xamppReadmePart1.png)
-![xamppReadmePart2](./res/Buff/xamppReadmePart2.png)
-![xamppReadmePart4](./res/Buff/xamppReadmePart4.png)
 
-The user flag
+Since I was navigating through the directories, I also got the user flag
 
 ![userFlag](./res/Buff/userFlag.png)
 
-navigating around through the user files I found those 2 executables which could be interesting
+Doing some more navigation through the user files I found those 2 executables which could be interesting
 
 ![docsBat](./res/Buff/docsBat.png)
 ![downloadsExe](./res/Buff/downloadsExe.png)
 
---- 
+Then I checked the processList and I found that CloudMe was running, and that I was able to execute it
 
-TODO: Escalate privileges
+![getProcess](./res/Buff/getProcess.png)
+
+But I didn't know what to do with it exactly, so I got a hint from the guide mode which suggested to check netstat, but I was not able to find the process there
+
+![netstatCloudMe](./res/Buff/netstatCloudMe.png)
+
+Then I found out that I was able to pull files with an specific command for powershell, so I tried running winPEAS, PowerUp and a meterpreter shell, but none of them worked
+
+![failRunningPowerUp](./res/Buff/failRunningPowerUp.png)
+![meterpreterFail](./res/Buff/meterpreterFail.png)
+
+Since I was a little stuck, I decided to check the write-up, where I saw that we had to do a port forward to the port 8888 to attack CloudMe, since I didn't know how they arrived to that conclusion, since it is not possible to compare the process id with netstat, and it's not possible to use lsof, I did some research about it, and since CloudMe is an external already known service, it is enough by googling it to see which port does it use, and also some exploits come out, so I noted for next times, to always look for weird process and executables, cause they could be a known service and not an internal thing, like in this case, so with that said, I went ahead and to do the port forwarding, so first I fetched Chisel
+
+![fetchChisel](./res/Buff/fetchChisel.png)
+
+Then I ran chisel both on my kali machine and on the target, and I got a connection back
+
+![chiselClient](./res/Buff/chiselClient.png)
+![chiselServer](./res/Buff/chiselServer.png)
+
+So I generated a payload as it says on the exploit script
+
+![generatePayload](./res/Buff/generatePayload.png)
+
+And after running the exploit I got an elevated shell back
+
+![gettingElevatedShell](./res/Buff/gettingElevatedShell.png)
+
+So the only thing left to do was to retrieve the root flag
+
+![rootFlag](./res/Buff/rootFlag.png)
