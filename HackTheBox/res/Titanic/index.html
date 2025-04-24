@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Titanic - Book Your Ship Trip</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link href="{{ url_for('static', filename='styles.css') }}" rel="stylesheet">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/x-icon" href="{{ url_for('static', filename='assets/images/favicon.ico') }}">
+    <style>
+        body {
+            font-family: 'Playfair Display', serif;
+        }
+        .hero-section {
+            background-image: url("{{ url_for('static', filename='assets/images/home.jpg') }}");
+            background-size: cover;
+            background-position: center;
+            color: white;
+            padding: 100px 0;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <a class="navbar-brand" href="#">Titanic</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" href="#">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">About</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Services</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Contact</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link btn btn-primary text-white" href="#" data-toggle="modal" data-target="#bookingModal">Book Now</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <header class="hero-section">
+        <div class="container text-center">
+            <h1>Welcome to Titanic</h1>
+            <p>Your gateway to a luxurious ship trip experience</p>
+            <a href="#" class="btn btn-primary" data-toggle="modal" data-target="#bookingModal">Book Your Trip</a>
+        </div>
+    </header>
+
+    <!-- Services Section -->
+    <section class="services-section py-5">
+        <div class="container text-center">
+            <h2>Our Services</h2>
+            <div class="row mt-4">
+                <div class="col-md-4">
+                    <div class="card">
+                        <img src="{{ url_for('static', filename='assets/images/luxury-cabins.jpg') }}" class="card-img-top" alt="Luxury Cabins">
+                        <div class="card-body">
+                            <h5 class="card-title">Luxury Cabins</h5>
+                            <p class="card-text">Experience the best in class cabins with all modern amenities.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card">
+                        <img src="{{ url_for('static', filename='assets/images/exquisite-dining.jpg') }}" class="card-img-top" alt="Exquisite Dining">
+                        <div class="card-body">
+                            <h5 class="card-title">Exquisite Dining</h5>
+                            <p class="card-text">Enjoy world-class dining options curated by top chefs.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card">
+                        <img src="{{ url_for('static', filename='assets/images/entertainment.jpg') }}" class="card-img-top" alt="Entertainment">
+                        <div class="card-body">
+                            <h5 class="card-title">Entertainment</h5>
+                            <p class="card-text">Wide range of entertainment options for all age groups.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer bg-dark text-white py-4">
+        <div class="container text-center">
+            <p>&copy; 2024 Titanic. All rights reserved.</p>
+            <ul class="list-inline">
+                <li class="list-inline-item"><a href="#" class="text-white">Privacy Policy</a></li>
+                <li class="list-inline-item"><a href="#" class="text-white">Terms of Use</a></li>
+            </ul>
+        </div>
+    </footer>
+
+    <!-- Booking Modal -->
+    <div class="modal fade" id="bookingModal" tabindex="-1" aria-labelledby="bookingModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="bookingModalLabel">Book Your Trip</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form action="/book" method="post">
+                        <div class="form-group">
+                            <label for="name">Full Name</label>
+                            <input type="text" class="form-control" id="name" name="name" placeholder="Enter your full name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email address</label>
+                            <input type="email" class="form-control" id="email" name="email" placeholder="Enter your email" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="phone">Phone Number</label>
+                            <input type="tel" class="form-control" id="phone" name="phone" placeholder="Enter your phone number" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="date">Travel Date</label>
+                            <input type="date" class="form-control" id="date" name="date" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="cabin">Cabin Type</label>
+                            <select class="form-control" id="cabin" name="cabin">
+                                <option>Standard</option>
+                                <option>Deluxe</option>
+                                <option>Suite</option>
+                            </select>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
