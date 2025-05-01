@@ -129,3 +129,80 @@ We also have the information from the previous enumeration that there should be 
 So I continued the enumeration by checking if there's something executable as root sudo or some SUID binaries, but it doesn't seem to be anything interesting there either
 
 ![perm4000](./res/Titanic/perm4000.png)
+
+With that I decided to run linPEAS, so I proceed to download it, give it permissions and run it, it gave me a lot of outputs, and I've put the most interesting in the [linPEAS folder](./linPEAS)
+
+![downloadLinpeas](./res/Titanic/downloadLinpeas.png)
+
+After that I tried escalating with some of it's recommendations, the first one being the sudo, so I checked the version
+
+![checkSudoVersion](./res/Titanic/checkSudoVersion.png)
+
+And then I found an exploit for it, but it didn't work
+
+![sudoExploitFail](./res/Titanic/sudoExploitFail.png)
+
+So I moved to the next interesting escalation path which was the pkexec, I started by verifing the version
+
+![pkexecEnum](./res/Titanic/pkexecEnum.png)
+
+Then I tried to run the following [exploit](https://www.exploit-db.com/exploits/50689) but it didn't work either, it seems to be patched
+
+![pkexecPatched](./res/Titanic/pkexecPatched.png)
+
+I also tried to see if there was mongodb running since there's a config file for it, but it doesn't seem to be the case
+
+![mongodb](./res/Titanic/mongodb.png)
+
+So I went ahead to try the last thing that linPEAS suggested, which was the .local/bin on path, but I didn't found anything there either
+
+![localBin](./res/Titanic/localBin.png)
+
+So I got back to enumerate the target manually with the help of the following [checklist](https://viperone.gitbook.io/pentest-everything/everything/everything-linux/privilege-escalation-checklist) and I started by the system information
+
+![generalEnum](./res/Titanic/generalEnum.png)
+![kernelVersion](./res/Titanic/kernelVersion.png)
+
+I took a little detour by getting a meterpreter shell and running the local exploit suggester, but none of those worked either
+
+![localExploitSuggester](./res/Titanic/localExploitSuggester.png)
+
+So I continued the enumeration with the following [checklist](https://swisskyrepo.github.io/InternalAllTheThings/redteam/escalation/linux-privilege-escalation/#cron-jobs) and the first thing that I checked was the cron jobs, but there wasn't any escalation possible either
+
+![cron](./res/Titanic/cron.png)
+
+I also did some password search, but nothing interesting was found
+
+![passwdSearch](./res/Titanic/passwdSearch.png)
+
+Since I was running out of options of thing to check and enumerate, I decided to take a look manually on the installed programs and files on the target system, and I found that there's a script on opt owned by root, unfortunately we cannot modify it with developer user, but after a quick google search of "/usr/bin/magick" I discovered that it is runnning ImageMagick
+
+![identifyImagesScript](./res/Titanic/identifyImagesScript.png)
+
+So I checked the version to see if there was any exploit for that
+
+![magickVersion](./res/Titanic/magickVersion.png)
+
+And I also checked if the images directory where the script is pointing is writable, which seems to be the case
+
+![images](./res/Titanic/images.png)
+
+I searched some information about [ImageMagick](https://imagemagick.org/) and it seems that it's used for a lot of puposes related with image management, including reading metadata like in the previous script, I also found the following [exploit](https://github.com/ImageMagick/ImageMagick/security/advisories/GHSA-8rxc-922v-phg8) and after doing the proof of concept it worked, now I have to figure out how to apply it to my use case
+
+![exploitPOC](./res/Titanic/exploitPOC.png)
+
+After some tries, I decided to try to create a file with it, and it worked
+
+![exploitTest](./res/Titanic/exploitTest.png)
+
+With that in mind I created a reverse shell
+
+![creatingReverseShell](./res/Titanic/creatingReverseShell.png)
+
+And I finally got an elevated shell
+
+![gettingElevatedShell](./res/Titanic/gettingElevatedShell.png)
+
+Now the only thing left to do is retrieve the root flag
+
+![rootFlag](./res/Titanic/rootFlag.png)
