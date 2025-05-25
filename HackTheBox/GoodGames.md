@@ -93,6 +93,8 @@ With that I was able to find the package.json which contains the version and som
 
 ![package](./res/GoodGames/package.png)
 
+## Exploitation
+
 After that I searched for exploits, but nothing came out, so I checked the source codes of the login page, volt.js and gulpfile.js deeper, but I didn't found anything. Since I was stuck there, I checked the official write-up and I saw that I should have used sqlmap to exploit the sqlinjection and get all the user information from the DB, since I didn't know that sqlmap was able to do that, I took a break to research on sqlmap, and after that I did what the write-up suggested and dumped the DB, which showed the following
 
 ![users](./res/GoodGames/users.png)
@@ -120,6 +122,8 @@ So I went to retrieve the flags, first the user
 And then the root flag, but I wasn't able to find it anywhere
 
 ![rootFlagFail](./res/GoodGames/rootFlagFail.png)
+
+## Post Exploitation
 
 So I checked the write-up again to see where was it located, and instead of that I saw the title privilege escalation via docker escape, so it seems that our work here isn't done, so I went back where we spawned and after a quick check of the files I confirmed that indeed we are into a docker
 
