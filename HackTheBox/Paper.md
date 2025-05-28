@@ -123,3 +123,88 @@ So I changed the approach and tried login in via ssh on dwight's account with **
 ![shell](./res/Paper/shell.png)
 
 ## Post Exploitation
+
+Then I started the enumeration for the escalation pulling the system information which confirmed that the target has CentOS 8
+
+![sysinfo](./res/Paper/sysinfo.png)
+
+I continued by checking the sudo permissions, but apparently dwight doesn't have any
+
+![sudo](./res/Paper/sudo.png)
+
+So I kept going with the SUIDs, but none of there were on GTFObins
+
+![perm4000](./res/Paper/perm4000.png)
+
+After that I checked the network information, which didn't display anything suspicious, apart from the port 48320 that is rocketchat, the ports for ssh and http that we already know, and some other ports for SQL and mondoDB
+
+![networkInfo](./res/Paper/networkInfo.png)
+
+Then I changed the approach and went to metasploit to run the local exploit suggester
+
+![localExploitSuggester](./res/Paper/localExploitSuggester.png)
+
+But any of those worked, so I migrated to linpeas, which displayed a lot of information this time, some of the most interesting is:
+
+- mail information and backups
+![mails](./res/Paper/mails.png)
+- unexpected files under opt and root
+![unexpected](./res/Paper/unexpected.png)
+- some interesting files
+![interestingFiles](./res/Paper/interestingFiles.png)
+- ftp configuration
+![ftp](./res/Paper/ftp.png)
+- rocketchat files, which include the mongodb configuration
+![rocketchatFiles](./res/Paper/rocketchatFiles.png)
+- some service files related to hubot
+![serviceFiles](./res/Paper/serviceFiles.png)
+- cron jobs information
+![cronJobs](./res/Paper/cronJobs.png)
+- linux exploit suggester
+![linuxExploitSuggester](./res/Paper/linuxExploitSuggester.png)
+- and the PATH
+![path](./res/Paper/path.png)
+
+Since the CVE-2021-3560 was highlighted on the linux exploit suggester from linpeas, I decided to give it a try first, and it kind of worked, cause I was able to create the user and so on, but I was still not getting the privileges
+
+![dbusFail](./res/Paper/dbusFail.png)
+
+So after enumerate the files on the target, I moved to mondoDB with the following credentials **rocket:my$ecretPass**
+
+![dbUsers](./res/Paper/mongo.png)
+
+And there I was able to enumerate the users further
+
+![dbUsers](./res/Paper/dbUsers.png)
+
+And I found that nick was an admin
+
+![nick](./res/Paper/nick.png)
+
+So I procced to crack it's password
+
+![nickPass](./res/Paper/nickPass.png)
+
+I also checked rocket user, but it didn't have a password, I guess it's because it's a bot
+
+![rocket](./res/Paper/rocket.png)
+
+While nick password was cracking I checked the cron jobs, to see if there was something interesting, but dwight is only running the bot restart script as dwight
+
+![cron](./res/Paper/cron.png)
+
+And all other cron jobs were only writable by root
+
+![crond](./res/Paper/crond.png)
+
+Since I was running out of options, I got the user flag in order to get a hint from HTB guided mode, which was to check the polkit version
+
+![userFlag](./res/Paper/userFlag.png)
+
+So after checking the polkit version, and googling it the same cve that I tried to exploit before came out, the one reported from linpeas, and the thing is that apparently, the exploit worked before, but I didn't know it, cause I dropped in that new user which apparently didn't have any other privileges than the ones I had before, but the magic is that it can run any command as sudo, so with that we can get a shell as root
+
+![exploit](./res/Paper/exploit.png)
+
+And with that we can get the root flag
+
+![rootFlag](./res/Paper/rootFlag.png)
