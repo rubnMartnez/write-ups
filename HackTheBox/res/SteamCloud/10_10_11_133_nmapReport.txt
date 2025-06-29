@@ -1,0 +1,132 @@
+Starting Nmap 7.95 ( https://nmap.org ) at 2025-06-20 12:43 EDT
+Nmap scan report for 10.10.11.133
+Host is up (0.030s latency).
+
+PORT      STATE SERVICE          VERSION
+22/tcp    open  ssh              OpenSSH 7.9p1 Debian 10+deb10u2 (protocol 2.0)
+| ssh-hostkey: 
+|   2048 fc:fb:90:ee:7c:73:a1:d4:bf:87:f8:71:e8:44:c6:3c (RSA)
+|   256 46:83:2b:1b:01:db:71:64:6a:3e:27:cb:53:6f:81:a1 (ECDSA)
+|_  256 1d:8d:d3:41:f3:ff:a4:37:e8:ac:78:08:89:c2:e3:c5 (ED25519)
+2379/tcp  open  ssl/etcd-client?
+|_ssl-date: TLS randomness does not represent time
+| tls-alpn: 
+|_  h2
+| ssl-cert: Subject: commonName=steamcloud
+| Subject Alternative Name: DNS:localhost, DNS:steamcloud, IP Address:10.10.11.133, IP Address:127.0.0.1, IP Address:0:0:0:0:0:0:0:1
+| Not valid before: 2025-06-20T16:41:35
+|_Not valid after:  2026-06-20T16:41:35
+2380/tcp  open  ssl/etcd-server?
+| ssl-cert: Subject: commonName=steamcloud
+| Subject Alternative Name: DNS:localhost, DNS:steamcloud, IP Address:10.10.11.133, IP Address:127.0.0.1, IP Address:0:0:0:0:0:0:0:1
+| Not valid before: 2025-06-20T16:41:35
+|_Not valid after:  2026-06-20T16:41:35
+|_ssl-date: TLS randomness does not represent time
+| tls-alpn: 
+|_  h2
+8443/tcp  open  ssl/http         Golang net/http server
+|_ssl-date: TLS randomness does not represent time
+| tls-alpn: 
+|   h2
+|_  http/1.1
+|_http-title: Site doesn't have a title (application/json).
+| ssl-cert: Subject: commonName=minikube/organizationName=system:masters
+| Subject Alternative Name: DNS:minikubeCA, DNS:control-plane.minikube.internal, DNS:kubernetes.default.svc.cluster.local, DNS:kubernetes.default.svc, DNS:kubernetes.default, DNS:kubernetes, DNS:localhost, IP Address:10.10.11.133, IP Address:10.96.0.1, IP Address:127.0.0.1, IP Address:10.0.0.1
+| Not valid before: 2025-06-19T16:41:33
+|_Not valid after:  2028-06-19T16:41:33
+| fingerprint-strings: 
+|   FourOhFourRequest: 
+|     HTTP/1.0 403 Forbidden
+|     Audit-Id: 9b7d8d24-ade7-4674-b9d0-2851cd372105
+|     Cache-Control: no-cache, private
+|     Content-Type: application/json
+|     X-Content-Type-Options: nosniff
+|     X-Kubernetes-Pf-Flowschema-Uid: 0b8bc99d-cb2d-49cd-8619-8ff06a48e007
+|     X-Kubernetes-Pf-Prioritylevel-Uid: f5fb2ec9-e9d0-4cbd-8f8e-487906f45f28
+|     Date: Fri, 20 Jun 2025 16:45:59 GMT
+|     Content-Length: 212
+|     {"kind":"Status","apiVersion":"v1","metadata":{},"status":"Failure","message":"forbidden: User "system:anonymous" cannot get path "/nice ports,/Trinity.txt.bak"","reason":"Forbidden","details":{},"code":403}
+|   GetRequest: 
+|     HTTP/1.0 403 Forbidden
+|     Audit-Id: 7b90445d-2ed8-401a-aea4-2a98047a9b64
+|     Cache-Control: no-cache, private
+|     Content-Type: application/json
+|     X-Content-Type-Options: nosniff
+|     X-Kubernetes-Pf-Flowschema-Uid: 0b8bc99d-cb2d-49cd-8619-8ff06a48e007
+|     X-Kubernetes-Pf-Prioritylevel-Uid: f5fb2ec9-e9d0-4cbd-8f8e-487906f45f28
+|     Date: Fri, 20 Jun 2025 16:45:59 GMT
+|     Content-Length: 185
+|     {"kind":"Status","apiVersion":"v1","metadata":{},"status":"Failure","message":"forbidden: User "system:anonymous" cannot get path "/"","reason":"Forbidden","details":{},"code":403}
+|   HTTPOptions: 
+|     HTTP/1.0 403 Forbidden
+|     Audit-Id: c282bc79-d49c-4992-8a49-39986b81e802
+|     Cache-Control: no-cache, private
+|     Content-Type: application/json
+|     X-Content-Type-Options: nosniff
+|     X-Kubernetes-Pf-Flowschema-Uid: 0b8bc99d-cb2d-49cd-8619-8ff06a48e007
+|     X-Kubernetes-Pf-Prioritylevel-Uid: f5fb2ec9-e9d0-4cbd-8f8e-487906f45f28
+|     Date: Fri, 20 Jun 2025 16:45:59 GMT
+|     Content-Length: 189
+|_    {"kind":"Status","apiVersion":"v1","metadata":{},"status":"Failure","message":"forbidden: User "system:anonymous" cannot options path "/"","reason":"Forbidden","details":{},"code":403}
+10249/tcp open  http             Golang net/http server (Go-IPFS json-rpc or InfluxDB API)
+|_http-title: Site doesn't have a title (text/plain; charset=utf-8).
+10250/tcp open  ssl/http         Golang net/http server (Go-IPFS json-rpc or InfluxDB API)
+| ssl-cert: Subject: commonName=steamcloud@1750437698
+| Subject Alternative Name: DNS:steamcloud
+| Not valid before: 2025-06-20T15:41:38
+|_Not valid after:  2026-06-20T15:41:38
+|_http-title: Site doesn't have a title (text/plain; charset=utf-8).
+|_ssl-date: TLS randomness does not represent time
+| tls-alpn: 
+|   h2
+|_  http/1.1
+10256/tcp open  http             Golang net/http server (Go-IPFS json-rpc or InfluxDB API)
+|_http-title: Site doesn't have a title (text/plain; charset=utf-8).
+1 service unrecognized despite returning data. If you know the service/version, please submit the following fingerprint at https://nmap.org/cgi-bin/submit.cgi?new-service :
+SF-Port8443-TCP:V=7.95%T=SSL%I=7%D=6/20%Time=68558FD6%P=x86_64-pc-linux-gn
+SF:u%r(GetRequest,22F,"HTTP/1\.0\x20403\x20Forbidden\r\nAudit-Id:\x207b904
+SF:45d-2ed8-401a-aea4-2a98047a9b64\r\nCache-Control:\x20no-cache,\x20priva
+SF:te\r\nContent-Type:\x20application/json\r\nX-Content-Type-Options:\x20n
+SF:osniff\r\nX-Kubernetes-Pf-Flowschema-Uid:\x200b8bc99d-cb2d-49cd-8619-8f
+SF:f06a48e007\r\nX-Kubernetes-Pf-Prioritylevel-Uid:\x20f5fb2ec9-e9d0-4cbd-
+SF:8f8e-487906f45f28\r\nDate:\x20Fri,\x2020\x20Jun\x202025\x2016:45:59\x20
+SF:GMT\r\nContent-Length:\x20185\r\n\r\n{\"kind\":\"Status\",\"apiVersion\
+SF:":\"v1\",\"metadata\":{},\"status\":\"Failure\",\"message\":\"forbidden
+SF::\x20User\x20\\\"system:anonymous\\\"\x20cannot\x20get\x20path\x20\\\"/
+SF:\\\"\",\"reason\":\"Forbidden\",\"details\":{},\"code\":403}\n")%r(HTTP
+SF:Options,233,"HTTP/1\.0\x20403\x20Forbidden\r\nAudit-Id:\x20c282bc79-d49
+SF:c-4992-8a49-39986b81e802\r\nCache-Control:\x20no-cache,\x20private\r\nC
+SF:ontent-Type:\x20application/json\r\nX-Content-Type-Options:\x20nosniff\
+SF:r\nX-Kubernetes-Pf-Flowschema-Uid:\x200b8bc99d-cb2d-49cd-8619-8ff06a48e
+SF:007\r\nX-Kubernetes-Pf-Prioritylevel-Uid:\x20f5fb2ec9-e9d0-4cbd-8f8e-48
+SF:7906f45f28\r\nDate:\x20Fri,\x2020\x20Jun\x202025\x2016:45:59\x20GMT\r\n
+SF:Content-Length:\x20189\r\n\r\n{\"kind\":\"Status\",\"apiVersion\":\"v1\
+SF:",\"metadata\":{},\"status\":\"Failure\",\"message\":\"forbidden:\x20Us
+SF:er\x20\\\"system:anonymous\\\"\x20cannot\x20options\x20path\x20\\\"/\\\
+SF:"\",\"reason\":\"Forbidden\",\"details\":{},\"code\":403}\n")%r(FourOhF
+SF:ourRequest,24A,"HTTP/1\.0\x20403\x20Forbidden\r\nAudit-Id:\x209b7d8d24-
+SF:ade7-4674-b9d0-2851cd372105\r\nCache-Control:\x20no-cache,\x20private\r
+SF:\nContent-Type:\x20application/json\r\nX-Content-Type-Options:\x20nosni
+SF:ff\r\nX-Kubernetes-Pf-Flowschema-Uid:\x200b8bc99d-cb2d-49cd-8619-8ff06a
+SF:48e007\r\nX-Kubernetes-Pf-Prioritylevel-Uid:\x20f5fb2ec9-e9d0-4cbd-8f8e
+SF:-487906f45f28\r\nDate:\x20Fri,\x2020\x20Jun\x202025\x2016:45:59\x20GMT\
+SF:r\nContent-Length:\x20212\r\n\r\n{\"kind\":\"Status\",\"apiVersion\":\"
+SF:v1\",\"metadata\":{},\"status\":\"Failure\",\"message\":\"forbidden:\x2
+SF:0User\x20\\\"system:anonymous\\\"\x20cannot\x20get\x20path\x20\\\"/nice
+SF:\x20ports,/Trinity\.txt\.bak\\\"\",\"reason\":\"Forbidden\",\"details\"
+SF::{},\"code\":403}\n");
+Warning: OSScan results may be unreliable because we could not find at least 1 open and 1 closed port
+Device type: general purpose|router
+Running: Linux 4.X|5.X, MikroTik RouterOS 7.X
+OS CPE: cpe:/o:linux:linux_kernel:4 cpe:/o:linux:linux_kernel:5 cpe:/o:mikrotik:routeros:7 cpe:/o:linux:linux_kernel:5.6.3
+OS details: Linux 4.15 - 5.19, Linux 5.0 - 5.14, MikroTik RouterOS 7.2 - 7.5 (Linux 5.6.3)
+Network Distance: 2 hops
+Service Info: OS: Linux; CPE: cpe:/o:linux:linux_kernel
+
+TRACEROUTE (using port 443/tcp)
+HOP RTT      ADDRESS
+1   29.68 ms 10.10.14.1
+2   29.38 ms 10.10.11.133
+
+OS and Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .
+Nmap done: 1 IP address (1 host up) scanned in 38.76 seconds

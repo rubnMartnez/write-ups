@@ -1,0 +1,16 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: ginx
+  namespace: default
+spec:
+  containers:
+  - name: ginx
+    image: nginx:1.14.2
+    volumeMounts:
+    - mountPath: /mnt
+      name: hostfs 
+  volumes:
+  - name: hostfs 
+    hostPath:
+      path: /
