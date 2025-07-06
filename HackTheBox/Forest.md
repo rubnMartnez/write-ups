@@ -4,7 +4,7 @@ This is my write-up for the machine **Forest** on Hack The Box located at: https
 
 ## Enumeration
 
-First I started with an [nmap scan](./res/Forest/10_10_10_100_nmapReport.txt), which shows the following
+First I started with an [nmap scan](./res/Forest/10_10_10_161_nmapReport.txt), which shows the following
 
 ![nmapScan](./res/Forest/nmapScan.png)
 
