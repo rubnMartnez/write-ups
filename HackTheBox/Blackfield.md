@@ -4,7 +4,7 @@ This is my write-up for the machine **Blackfield** on Hack The Box located at: h
 
 ## Enumeration
 
-First I started with an [nmap scan](./res/Timelapse/10_10_10_192_nmapReport.txt), which shows the following
+First I started with an [nmap scan](./res/Blackfield/10_10_10_192_nmapReport.txt), which shows the following
 
 ![nmapScan](./res/Blackfield/nmapScan.png)
 
