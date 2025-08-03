@@ -1,0 +1,40 @@
+Starting Nmap 7.95 ( https://nmap.org ) at 2025-07-19 16:54 UTC
+Nmap scan report for 10.10.10.192
+Host is up (0.031s latency).
+
+PORT     STATE    SERVICE       VERSION
+53/tcp   open     domain        Simple DNS Plus
+88/tcp   open     kerberos-sec  Microsoft Windows Kerberos (server time: 2025-07-20 23:57:03Z)
+135/tcp  open     msrpc         Microsoft Windows RPC
+139/tcp  filtered netbios-ssn
+389/tcp  open     ldap          Microsoft Windows Active Directory LDAP (Domain: BLACKFIELD.local0., Site: Default-First-Site-Name)
+445/tcp  open     microsoft-ds?
+3268/tcp open     ldap          Microsoft Windows Active Directory LDAP (Domain: BLACKFIELD.local0., Site: Default-First-Site-Name)
+5985/tcp open     http          Microsoft HTTPAPI httpd 2.0 (SSDP/UPnP)
+|_http-title: Not Found
+|_http-server-header: Microsoft-HTTPAPI/2.0
+Warning: OSScan results may be unreliable because we could not find at least 1 open and 1 closed port
+Device type: general purpose
+Running (JUST GUESSING): Microsoft Windows 2019|10 (97%)
+OS CPE: cpe:/o:microsoft:windows_server_2019 cpe:/o:microsoft:windows_10
+Aggressive OS guesses: Windows Server 2019 (97%), Microsoft Windows 10 1903 - 21H1 (91%)
+No exact OS matches for host (test conditions non-ideal).
+Network Distance: 2 hops
+Service Info: Host: DC01; OS: Windows; CPE: cpe:/o:microsoft:windows
+
+Host script results:
+| smb2-security-mode: 
+|   3:1:1: 
+|_    Message signing enabled and required
+| smb2-time: 
+|   date: 2025-07-20T23:57:10
+|_  start_date: N/A
+|_clock-skew: 1d07h02m07s
+
+TRACEROUTE (using port 445/tcp)
+HOP RTT      ADDRESS
+1   30.89 ms 10.10.14.1
+2   30.88 ms 10.10.10.192
+
+OS and Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .
+Nmap done: 1 IP address (1 host up) scanned in 54.09 seconds
